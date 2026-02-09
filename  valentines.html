@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hey Glory 💖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: pink;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+    }
+    #yes {
+      background-color: red;
+      color: white;
+    }
+    #no {
+      background-color: white;
+      color: black;
+    }
+
+    .heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 6s linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+  </style>
+</head>
+<body>
+
+    <audio id="loveSong">
+      <source src="song.mp3" type="audio/mpeg">
+    </audio>
+  
+    <div>
+      <h1>Glory 💕</h1>
+      <h2>Will you be my Valentine? 🥺💘</h2>
+      <button id="yes" onclick="yesClicked()">Yes 💖</button>
+      <button id="no" onclick="noClicked()">No 🙃</button>
+    </div>
+  
+    <script>
+      let noSize = 20;
+      let yesSize = 20;
+  
+      function noClicked() {
+        noSize -= 3;
+        yesSize += 4;
+  
+        document.getElementById("no").style.fontSize = noSize + "px";
+        document.getElementById("yes").style.fontSize = yesSize + "px";
+  
+        if (noSize <= 5) {
+          document.getElementById("no").style.display = "none";
+        }
+      }
+  
+      function yesClicked() {
+  document.getElementById("loveSong").play();
+    setInterval(createHeart, 300);
+    
+  document.body.innerHTML = `
+    <div style="text-align:center; font-family: Arial;">
+      <h1>Thanks babe for still accepting despite my initial mess up❤️</h1>
+      <h2>I love you and see you on valentines 💕🌹</h2>
+      <p style="font-size:22px; margin-top:30px;">
+        Forever yours,<br>
+        <strong>Your Goofball ❤️</strong>
+      </p>
+    </div>
+  `;
+      }
+
+      function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 20 + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+      }
+    </script>
+  
+  </body>
+</html>
